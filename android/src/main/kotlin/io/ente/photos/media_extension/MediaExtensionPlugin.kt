@@ -145,8 +145,9 @@ class MediaExtensionPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                     resAction = IntentAction.valueOf("EDIT")
                 }
                 Intent.ACTION_VIEW -> {
-                    if(data != null && data.scheme.equals("https", ignoreCase = true)) {
-                        if(data.host.equals("albums.ente.sh", ignoreCase = true)) {
+                    if(data != null) {
+                        if (data.scheme.equals("https", ignoreCase = true) &&
+                            data.host.equals("albums.ente.sh", ignoreCase = true)) {
                             result["uri"] = data.toString()
                         }
                     }
