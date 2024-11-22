@@ -145,21 +145,22 @@ class MediaExtensionPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                     resAction = IntentAction.valueOf("EDIT")
                 }
                 Intent.ACTION_VIEW -> {
-                if (data != null) {
-                    // Check for app links first
-                    if (data.scheme?.equals("https", ignoreCase = true) == true &&
-                        data.host?.equals("albums.ente.sh", ignoreCase = true) == true) {
-                        result["uri"] = data.toString()
-                    } else if (type != null) {
-                        try {
-                            getResolvedContent(data, type, result)
-                        } catch (e: Exception) {
-                            Log.e("MediaExtension", "Error resolving content", e)
+                    if (data != null) {
+                        // Check for app links first
+                        if (data.scheme.equals("https", ignoreCase = true) == true &&
+                            data.host.equals("albums.ente.sh", ignoreCase = true) == true) {
+                            result["uri"] = data.toString()
+                        } else if (type != null) {
+                            try {
+                                getResolvedContent(data, type, result)
+                            } catch (e: Exception) {
+                                Log.e("MediaExtension", "Error resolving content", e)
+                            }
                         }
                     }
+                    resAction = IntentAction.valueOf("VIEW")
+                    getResolvedContent(data!!, type!!, result)
                 }
-                resAction = IntentAction.valueOf("VIEW")
-            }
                 else -> {
                     resAction = IntentAction.valueOf("MAIN")
                 }
