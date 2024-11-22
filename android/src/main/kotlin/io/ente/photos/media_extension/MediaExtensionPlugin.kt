@@ -150,12 +150,6 @@ class MediaExtensionPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                         if (data.scheme.equals("https", ignoreCase = true) == true &&
                             data.host.equals("albums.ente.sh", ignoreCase = true) == true) {
                             result["uri"] = data.toString()
-                        } else if (type != null) {
-                            try {
-                                getResolvedContent(data, type, result)
-                            } catch (e: Exception) {
-                                Log.e("MediaExtension", "Error resolving content", e)
-                            }
                         }
                     }
                     resAction = IntentAction.valueOf("VIEW")
