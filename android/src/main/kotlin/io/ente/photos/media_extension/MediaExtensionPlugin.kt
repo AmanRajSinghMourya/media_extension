@@ -147,13 +147,12 @@ class MediaExtensionPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                 Intent.ACTION_VIEW -> {
                     if(data != null) {
                         result["uri"] = data.toString()
-                        resAction = IntentAction.valueOf("VIEW")
                     }
                     else {
                         resAction = IntentAction.valueOf("VIEW")
                         getResolvedContent(data!!, type!!, result)
                     }
-                }
+                }   
                 else -> {
                     resAction = IntentAction.valueOf("MAIN")
                 }
