@@ -146,10 +146,8 @@ class MediaExtensionPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
                 }
                 Intent.ACTION_VIEW -> {
                     if(data != null) {
-                        if (data.scheme.equals("https", ignoreCase = true) &&
-                            data.host.equals("albums.ente.sh", ignoreCase = true)) {
-                            result["uri"] = data.toString()
-                        }
+                        result["uri"] = data.toString()
+                        resAction = IntentAction.valueOf("VIEW")
                     }
                     else {
                         resAction = IntentAction.valueOf("VIEW")
